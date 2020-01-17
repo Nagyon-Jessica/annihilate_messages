@@ -128,12 +128,13 @@ function annihilateMessages(oldest, latest, channel_id) {
       requests.push(request);
       num += 1;
             
-      //300件以上ある時は途中経過をキャッシュして中断＆自動再開
-      if(parsed.has_more == true && 30 * i + j == 299){
-        addQueue(oldest, timestamp);
-        postMessage(channel_id, "annihilateの実行時間がまもなく6分を越えるため、途中経過をキャッシュします！中断した処理は自動的に再開されます！");
-      }
-    }
+
+            //300件以上ある時は途中経過をキャッシュして中断＆自動再開
+            if(parsed.has_more == true && 30 * i + j == 299){
+                addQueue(oldest, timestamp, channel_id);
+                postMessage(channel_id, "annihilateの実行時間がまもなく6分を越えるため、途中経過をキャッシュします！中断した処理は自動的に再開されます！");
+            }
+        }
         
     var responses = UrlFetchApp.fetchAll(requests);
         
