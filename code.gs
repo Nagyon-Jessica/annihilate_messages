@@ -173,8 +173,9 @@ function collectHistory(oldest, latest, channel_id) {
     "payload" : payload
   }
 
-  var response = UrlFetchApp.fetch("https://slack.com/api/im.history", options);
-  return response;
+
+    var response = UrlFetchApp.fetch("https://slack.com/api/conversations.history", options);
+    return response;
 }
 
 //annihilate実行時に前回作成されたトリガーを削除
